@@ -1,0 +1,2 @@
+# core
+Basis-Implementierungen projektübergreifend
