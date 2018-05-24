@@ -16,6 +16,7 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
 
 /**
  * TODO RHildebrand JavaDoc
@@ -188,6 +189,7 @@ public class DataFormatter {
 		return DataFormatter.convertDate(sDate, "yyyyMMdd", DataFormatter.DEFAULT_DATE_FORMAT);
 	}
 
+
 	/**
 	 * Formatiert einen Datumsstring vom dateInPattern in dateOutPattern, wobei
 	 * unbekannte oder teilweise unbekannte Datumswerte als Leerstring
@@ -226,6 +228,18 @@ public class DataFormatter {
 	 */
 	public static String convertDate(final Date dateIn) {
 		return DataFormatter.convertDate(dateIn, DataFormatter.DEFAULT_DATE_FORMAT);
+	}
+
+	/**
+	 * Formatiert ein Datumsobjekt (Joda-Time), wobei unbekannte oder teilweise unbekannte Datumswerte als Leerstring zur�ckgeliefert werden.
+	 *
+	 * @param dateIn
+	 * @param dateOutPattern
+	 * @return
+	 */
+	public static String convertDateTime(final DateTime dateIn, final String dateOutPattern) {
+		String pattern = StringUtils.isNotBlank(dateOutPattern) ? dateOutPattern : DataFormatter.DEFAULT_DATE_FORMAT;
+		return dateIn.toString(pattern);
 	}
 
 	/**
